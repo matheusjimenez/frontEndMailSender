@@ -1,0 +1,66 @@
+
+body{
+    color: #B3F2F2;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    background-image: url("../images/background.jpg");
+    background-color: #0E2A70;
+    
+}
+
+#barra {
+    background-color: #084A66;
+
+    width: 100%;
+}
+#logo-icon {
+   color:#B3F2F2;
+  }
+#search input, #email input{
+    background-color: #10324E;
+    color: #fcfcfc;
+}
+
+.sign-in-up {
+    align-items: center;
+
+
+    height: 100%;
+}
+
+.login-button {
+    color: #B3F2F2;
+    background: none;
+    border: none;
+    outline: none;
+}
+i {
+    color:white;
+    font-size: 2rem;
+}
+.sign-in-button {
+    background-color: #6889A6;
+    border: none;
+    color: #0A1126;
+}
+
+.presentation {
+    background-color: #084A66;
+    font-size: larger;
+    color: #B3F2F2;
+    margin-top: 30vh;
+    margin-left: 10vw;
+    max-width: 500px;
+    word-wrap: break-word;
+    border-radius: 15px;
+}
+
+.input-group {
+    margin-left: 25%;
+    max-width: 50%;
+    padding: 10px;
+}
+
+.presentation-text {
+    padding: 10px;
+}

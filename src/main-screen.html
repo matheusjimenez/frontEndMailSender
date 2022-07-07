@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ChatApp</title>
+    <link rel="stylesheet" href="styles/main-screen.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="scripts/main-screen.js"></script>
+    <script src="https://kit.fontawesome.com/460396e556.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="row">
+            <div class="topbar ps-4  d-flex align-items-center" id="barra">
+                <div class="col-6">
+                    <a class="navbar-brand text-center" href="#" id="logo-icon">
+                        <i class="fa-brands fa-squarespace"></i>
+                        <span>Chat App</span>
+                    </a>
+                </div>
+
+                <div class="col-6 d-inline-flex ps-3 pb-2 pt-2 pe-2" id="search">
+                    <div class="col-lg-8 col-10 d-none d-lg-block" id="join-groups">
+                        <div class="text-center col-12 d-flex" role="search" id="search-bar">
+                            <input type="text" class="form-control border-0" placeholder="Junte-se a um grupo...">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                <ion-icon name="search-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 col-12 sign-in-up ps-lg-3 ps-md-5 text-end" id="user-login">
+                        <i class="fa-solid fa-user-astronaut col-lg-1"></i>
+                        <button class="login-button ps-3 pe-1" onclick="loginRedirect()">
+                            Login
+                        </button>
+                        <button class="sign-in-button rounded-pill btn-primary btn-lg" onclick="registerRedirect()">
+                            Sign up
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="presentation">
+                        <div class="presentation-text">
+                            JUNTE-SE A NOSSA FAMILIA<br>
+                            Serviço de chat em tempo real, perfeito para se comunicar com a guilda, reuniões de
+                            trabalho,
+                            grupos
+                            de estudo e aulas da faculdade!
+                        </div>
+                        <div class="text-center p-2 col-11 d-flex" id="email">
+                            <input type="text" class="form-control border-0" placeholder="E-mail address">
+                            <button class="btn btn-outline-secondary" type="button" id="sign-up-email-submit"
+                                onclick="registerRedirect()">Sign up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+        </script>
+    </div>
+</body>
+
+</html>
