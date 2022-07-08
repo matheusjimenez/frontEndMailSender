@@ -1,16 +1,18 @@
 import React from 'react';
 import { Card, CardTitle, CardText, Button } from 'reactstrap'
 
-function PresentationCard({ user }) {
+function PresentationCard({ user, clickEvent }) {
   return (
     <div>
       <Card
+        onClick={()=>{clickEvent(user.id)}}
         body
         inverse
         style={{
           backgroundColor: '#094f6d',
           borderColor: '#333',
-          margin: '8px 0'
+          margin: '8px 0',
+          cursor: 'pointer'
         }}
       >
         <CardTitle tag="h5">
@@ -19,7 +21,7 @@ function PresentationCard({ user }) {
         <CardText>
           {user.email}
         </CardText>
-        <Button>
+        <Button onClick={()=>{clickEvent(user.id)}}>
           Chat
         </Button>
       </Card>
