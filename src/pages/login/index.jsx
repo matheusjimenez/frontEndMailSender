@@ -53,13 +53,13 @@ const Login = () => {
     }
 
     return (
-        <div class="header">
-            <div class="row">
-                <div class="topbar ps-4 d-flex align-items-center" id="barra">
-                    <div class="col-6">
-                        <a class="navbar-brand text-center" href="#" id="logo-icon">
+        <div className="header">
+            <div className="row">
+                <div className="topbar ps-4 d-flex align-items-center" id="barra">
+                    <div className="col-6">
+                        <a className="navbar-brand text-center" href="#" id="logo-icon">
                             <FontAwesomeIcon icon="fa-solid fa-earth-africa" />
-                            <i class="fa-solid fa-earth-africa"></i>
+                            <i className="fa-solid fa-earth-africa"></i>
                             <span>Chat App</span>
                         </a>
                     </div>
@@ -135,8 +135,8 @@ const Login = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
+                    <Button variant="danger" onClick={handleClose}>
+                        Fechar
                     </Button>
                     <Button variant="primary" onClick={handleSignup}>
                         Cadastrar
