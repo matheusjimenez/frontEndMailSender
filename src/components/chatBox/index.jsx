@@ -42,7 +42,7 @@ const ChatBox = ({ user, messages = [], sendMessage }) => {
                 <div className='card-footer'>
                     <InputGroup>
                         <input onChange={(event)=>{setMessage(event.target.value)}} type='text' placeholder='Digite sua mensagem'/>
-                        <Button onClick={()=>sendMessage()}>Enviar</Button>
+                        <Button onClick={()=>sendMessage(message)}>Enviar</Button>
                     </InputGroup>
                 </div>
             </div>

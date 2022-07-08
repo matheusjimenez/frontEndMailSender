@@ -18,7 +18,9 @@ const Home = () => {
     const context = useAuth();
 
     const handleSendMessage = (message) =>{
-
+        api.post('/message', {message, receiverId: selectedUser.id});
+        getSentMessages();
+        getReceivedMessages();
     }
 
     const getSentMessages = async () => {
@@ -36,9 +38,8 @@ const Home = () => {
     const getPlataformUsers = async () => {
         api.get('user').then((response) => {
             let filteredResponse = response.data.filter((value)=> value.id !== loggedUser.id);
-            debugger;
             setUserList(filteredResponse);
-            setSelectedUser(response.data[0])
+            setSelectedUser(filteredResponse[0])
         })
     }
 
@@ -69,7 +70,7 @@ const Home = () => {
 
     useEffect(() => {
         combineSentAndReceivedMessageWithOrdenation(selectedUser.id);
-    }, [selectedUser]);
+    }, [selectedUser, messageSent, messageReceived]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -121,7 +122,7 @@ const Home = () => {
             </div>
 
             <div className="col-lg-8 col-md-12" id="chat">
-                <ChatBox messages={selectedUserMessages} user={selectedUser} />
+                <ChatBox messages={selectedUserMessages} user={selectedUser} sendMessage={handleSendMessage} />
             </div>
         </div>
     )
