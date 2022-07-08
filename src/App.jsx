@@ -1,16 +1,18 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { AuthProvider } from './context/context';
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Login } from './pages/login'
+
+import Routes from './routes';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <Login/>
-    </div>
+      <div className="App">
+        <AuthProvider>
+          <Routes/>
+        </AuthProvider>
+      </div>
   )
 }
 

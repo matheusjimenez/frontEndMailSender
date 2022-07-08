@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { api } from '../../http';
+import { useNavigate } from 'react-router-dom';
 
 import './style.css';
 
 const Login = () => {
     const [show, setShow] = useState(false);
     const [showSignup, setSignupShow] = useState(false);
-    const [email, setEmail] = useState('asda');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    let navigate = useNavigate();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -17,17 +21,40 @@ const Login = () => {
     const handleSignupClose = () => setSignupShow(false);
     const handleSignupShow = () => setSignupShow(true);
 
+    const handleTeste = async ()=>{
+        api.get('/messages/received').then((response)=>{
+            debugger;
+            console.log(response);
+        })
+    }
+
     const handleLogin = async () => {
-        debugger;
         api.post('login', { email, password })
             .then((response) => {
-                console.log(response);
-                debugger;
-                let config = {
-                    headers: {
-                        useridentifier: response,
-                    }
+                console.log('context',context);
+                if (response.status === 204) {
+                    alert('invalid user');
+                    return;
                 }
+
+                window.localStorage.setItem('userIdentifier', response.data.useridentifier);
+
+                navigate('/home');
+                handleClose();
+
+            }).catch((error) => {
+                alert(error);
+            })
+    }
+
+    const handleSignup = async () => {
+        api.post('user', { name: userName, password, email, birthDate })
+            .then((response) => {
+                debugger;
+                console.log(response);
+                handleSignupClose();
+            }).catch((error) => {
+                alert(error);
             })
     }
 
@@ -62,6 +89,7 @@ const Login = () => {
                             <button class="sign-in-button rounded-pill btn-primary btn-lg" onClick={handleSignupShow}>
                                 Sign up
                             </button>
+                            <button onClick={handleTeste}>teste</button>
                         </div>
                     </div>
                 </div>
@@ -69,10 +97,9 @@ const Login = () => {
                     <div class="col-lg-8 col-12">
                         <div class="presentation">
                             <div class="presentation-text">
-                                JUNTE-SE A NOSSA FAMILIA!<br />
-                                Espaço empresarial destinado a comunicação interna da empresa,
-                                perfeito para se comunicar com a sua equipe, marcar reuniões de
-                                trabalho, colaborar com a comunidade
+                                JUNTE-SE AO NOSSO CHAT APP<br />
+                                Serviço de chat perfeito para se comunicar com quem você quiser.
+                                O CÉU É O LIMITE!
                             </div>
                             <div class="text-center p-2 col-11 d-flex" id="email">
                                 <button class="btn btn-outline-secondary" type="button" id="sign-up-email-submit"
@@ -85,7 +112,7 @@ const Login = () => {
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Conecte-se agora!</Modal.Title>
+                    <Modal.Title>ENTRE E COMECE JÁ!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -99,20 +126,26 @@ const Login = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Sair
                     </Button>
                     <Button variant="primary" onClick={handleLogin}>
-                        Login
+                        Entrar
                     </Button>
                 </Modal.Footer>
             </Modal>
-            {/* MODAL DE SIGNUP */}
+
             <Modal show={showSignup} onHide={handleSignupClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Conecte-se agora!</Modal.Title>
+                    <Modal.Title>INSCREVA-SE E COMECE JÁ!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
+                        <div className='input-group'>
+                            <input onChange={(event) => { setUserName(event.target.value) }} type='text' className='form-control' placeholder='Nome'></input>
+                        </div>
+                        <div className='input-group'>
+                            <input onChange={(event) => { setBirthDate(event.target.value) }} type='date' className='form-control' placeholder='Data de Nascimento'></input>
+                        </div>
                         <div className='input-group mb-3'>
                             <input onChange={(event) => { setEmail(event.target.value) }} type='email' className='form-control' placeholder='Email'></input>
                         </div>
@@ -125,8 +158,8 @@ const Login = () => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleLogin}>
-                        Login
+                    <Button variant="primary" onClick={handleSignup}>
+                        Cadastrar
                     </Button>
                 </Modal.Footer>
             </Modal>

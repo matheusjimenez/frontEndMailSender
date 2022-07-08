@@ -7,4 +7,13 @@ const api = axios.create({
   headers:  { "Content-Type": "application/json", }
 });
 
+api.interceptors.request.use(function (config) {
+  config.headers = {
+    useridentifier: window.localStorage.getItem('userIdentifier')
+  }
+  return config;
+}, function (error) {
+  return Promise.reject(error);
+});
+
 export { api }
